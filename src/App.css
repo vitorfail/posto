@@ -8,8 +8,10 @@
   padding: 0;
 }
 .App{
+  background: black;
   position: absolute;
   display: flex;
+  flex-direction: column;
   justify-content: center;
   align-content: center;
   align-items: center;
@@ -27,4 +29,20 @@
   font-family: Calculador;
   box-shadow: inset 0 0 20px gray;
   background: #a49b95;
+}
+.teclado{
+  display: flex;
+  flex-wrap: wrap;
+  background:white;
+  height: 450px;
+  width: 250px;
+}
+.tecla{
+  border-radius: 7px;
+  border: solid 2px rgb(73, 73, 133);
+  margin: 10px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  align-content: center;
 }
