@@ -31,18 +31,36 @@
   background: #a49b95;
 }
 .teclado{
+  align-content: flex-start;
+  justify-content: center;
   display: flex;
   flex-wrap: wrap;
-  background:white;
-  height: 450px;
+  height: 290px;
   width: 250px;
 }
+.quadro{
+  display: flex;
+  justify-content: center;
+  align-content: center;
+  align-items: center;
+  width: 550px;
+  height: 410px;
+  background:#abacb0;
+}
 .tecla{
+  font-weight: 900;
+  background: #dfe6f6;
+  width: 40px;
+  height: 40px;
   border-radius: 7px;
-  border: solid 2px rgb(73, 73, 133);
-  margin: 10px;
+  border: solid 2px rgb(95, 95, 97);
+  margin: 7px;
   display: flex;
   justify-content: center;
   align-items: center;
   align-content: center;
+}
+.tecla:hover{
+  cursor: pointer;
+  background: #abacb0;
 }
