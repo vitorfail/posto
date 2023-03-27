@@ -8,7 +8,7 @@
   padding: 0;
 }
 .App{
-  background: black;
+  background:#abacb0;
   position: absolute;
   display: flex;
   flex-direction: column;
@@ -19,6 +19,7 @@
   height: 100%;
 }
 .tela{
+  border: solid 2px black;
   display: flex;
   justify-content: flex-end;
   align-content: center;
@@ -39,13 +40,19 @@
   width: 250px;
 }
 .quadro{
+  border-radius: 34px;
+  border: solid 3px rgb(70, 70, 70);
+  flex-direction: column;
   display: flex;
   justify-content: center;
   align-content: center;
   align-items: center;
-  width: 550px;
+  width: 250px;
   height: 410px;
   background:#abacb0;
+}
+.quadro img{
+  width: 200px;
 }
 .tecla{
   font-weight: 900;

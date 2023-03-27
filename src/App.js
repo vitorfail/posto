@@ -1,23 +1,35 @@
 import './App.css';
 import { useState } from 'react';
+import Logo from "./gilbarco.png" 
 
 
 function App() {
   const [valor, setvalor] = useState("0,00")
+  const [volume, setvolume] = useState("0,00")
+  const [troca, settroca] = useState(true)
   function adicionar(tecla){
-    tecla = String(tecla)
-    if(valor === "0,00"){
-      setvalor("")
-    }
-    if(tecla !== "Gum" || tecla !== "Gdois" || tecla !== "Pum" || tecla !== "Pdois" || tecla !== "$" || tecla !== "C" || tecla !== "E"){
-      setvalor( mascara_valor(valor + (tecla)))
+    if(troca){
+      tecla = String(tecla)
+      if(valor === "0,00"){
+        setvalor("")
+      }
+      if(tecla !== "Gum" || tecla !== "Gdois" || tecla !== "Pum" || tecla !== "Pdois" || tecla !== "$" || tecla !== "C" || tecla !== "E"){
+        setvalor( mascara_valor(valor + (tecla)))
+      }
+      else{
+        console.log("passou aqui")
+        if(tecla === "Pum"){
+            setvalor("5,00")
+        }
+      }    
     }
     else{
-      console.log("passou aqui")
-      if(tecla === "Pum"){
-        setvalor("5,00")
-      }
-    }  
+      
+    }
+  }
+  function volume(){
+    setvalor("0,00")
+    settroca(false)
   }
   function mascara_valor(e){
     e = e.replace(/\D/g, "")
@@ -35,7 +47,11 @@ function App() {
         <div className='tela'>
             <label>{valor}</label>
         </div>
+        <div className='tela'>
+            <label>{volume}</label>
+        </div>
         <div className='quadro'>
+          <img src={Logo} alt="logo"/>
           <div className='teclado'>
             <div onClick={(event) => adicionar(event.target.innerText)} className='tecla'>1</div>
             <div onClick={(event) => adicionar(event.target.innerText)} className='tecla'>2</div>
