@@ -1,33 +1,62 @@
 import './App.css';
+import { useState } from 'react';
+
 
 function App() {
+  const [valor, setvalor] = useState("0,00")
+  function adicionar(tecla){
+    tecla = String(tecla)
+    if(valor === "0,00"){
+      setvalor("")
+    }
+    if(tecla !== "Gum" || tecla !== "Gdois" || tecla !== "Pum" || tecla !== "Pdois" || tecla !== "$" || tecla !== "C" || tecla !== "E"){
+      setvalor( mascara_valor(valor + (tecla)))
+    }
+    else{
+      console.log("passou aqui")
+      if(tecla === "Pum"){
+        setvalor("5,00")
+      }
+    }  
+  }
+  function mascara_valor(e){
+    e = e.replace(/\D/g, "")
+    e = e.replace(/(\d)(\d{2})$/, "$1,$2")
+    e = e.replace(/(?=(\d{3})+(\D))\B/g, ".")
+    if( e.substr(0, 1) === '0'){ 
+      return e.substring(1)
+    }
+    else{
+      return e
+    }
+  }
   return (
     <div className="App">
         <div className='tela'>
-            <label>0,00</label>
+            <label>{valor}</label>
         </div>
         <div className='quadro'>
           <div className='teclado'>
-            <div className='tecla'>1</div>
-            <div className='tecla'>2</div>
-            <div className='tecla'>3</div>
-            <div className='tecla'>P1</div>
-            <div className='tecla'>4</div>
-            <div className='tecla'>5</div>
-            <div className='tecla'>6</div>
-            <div className='tecla'>P2</div>
-            <div className='tecla'>7</div>
-            <div className='tecla'>8</div>
-            <div className='tecla'>9</div>
-            <div className='tecla'>$</div>
-            <div className='tecla'>C</div>
-            <div className='tecla'>0</div>
-            <div className='tecla'>E</div>
-            <div className='tecla'>V</div>
-            <div className='tecla'>G1</div>
-            <div className='tecla'>◀</div>
-            <div className='tecla'>▶</div>
-            <div className='tecla'>G2</div>
+            <div onClick={(event) => adicionar(event.target.innerText)} className='tecla'>1</div>
+            <div onClick={(event) => adicionar(event.target.innerText)} className='tecla'>2</div>
+            <div onClick={(event) => adicionar(event.target.innerText)} className='tecla'>3</div>
+            <div onClick={(event) => adicionar(event.target.id)} id="Pum" className='tecla'>P1</div>
+            <div onClick={(event) => adicionar(event.target.innerText)} className='tecla'>4</div>
+            <div onClick={(event) => adicionar(event.target.innerText)} className='tecla'>5</div>
+            <div onClick={(event) => adicionar(event.target.innerText)} className='tecla'>6</div>
+            <div onClick={(event) => adicionar(event.target.id)}  id="Pdois" className='tecla'>P2</div>
+            <div onClick={(event) => adicionar(event.target.innerText)} className='tecla'>7</div>
+            <div onClick={(event) => adicionar(event.target.innerText)} className='tecla'>8</div>
+            <div onClick={(event) => adicionar(event.target.innerText)} className='tecla'>9</div>
+            <div onClick={(event) => adicionar(event.target.innerText)} className='tecla'>$</div>
+            <div onClick={(event) => adicionar(event.target.innerText)} className='tecla'>C</div>
+            <div onClick={(event) => adicionar(event.target.innerText)} className='tecla'>0</div>
+            <div onClick={(event) => adicionar(event.target.innerText)} className='tecla'>E</div>
+            <div onClick={(event) => adicionar(event.target.innerText)} className='tecla'>V</div>
+            <div onClick={(event) => adicionar(event.target.id)}  id="Gum" className='tecla'>G1</div>
+            <div onClick={(event) => adicionar(event.target.innerText)} className='tecla'>◀</div>
+            <div onClick={(event) => adicionar(event.target.innerText)} className='tecla'>▶</div>
+            <div onClick={(event) => adicionar(event.target.id)}  id="Gdois" className='tecla'>G2</div>
           </div>
         </div>
     </div>
