@@ -71,3 +71,73 @@
   cursor: pointer;
   background: #abacb0;
 }
+.modal-moeda, .modal-seta{
+  position: absolute;
+  z-index: 9;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.24);
+  display: none;
+  align-items: center;
+  justify-content: center;
+  align-content: center;
+}
+.modal-moeda.show, .modal-seta.show{
+  display: flex;
+}
+.modal-moeda .alerta, .modal-seta .alerta{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 500px;
+  height: 340px;
+  background: white;
+  box-shadow: 0px 0px 17px rgba(0, 0, 0, 0.438);
+  border-radius: 20px;
+}
+.modal-moeda .alerta img, .modal-seta .alerta img{
+  width: 190px;
+}
+.modal-moeda .alerta p, .modal-seta .alerta p{
+  margin: 20px;
+  text-align: justify;
+}
+.modal-moeda button, .modal-seta button{
+  font-size: 20px;
+  margin: 10px;
+  color: white;
+  border: none;
+  outline: none;
+  width: 60px;
+  height: 55px;
+  border-radius: 9px;
+  background: rgb(161, 161, 19);
+}
+.modal-moeda button:hover, .modal-seta button:hover{
+  cursor: pointer;
+  border: 2px solid rgb(161, 161, 19);
+  color: rgb(161, 161, 19);
+  background: white;
+}
+.abastecer{
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100px;
+  height: 100px;
+  border-radius: 50%;
+  background: rgb(10, 119, 10);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.abastecer img{
+  width: 90px;
+}
+.abastecer img:hover{
+  cursor: pointer;
+  border-radius: 50%;
+  border: 1px solid rgb(10, 119, 10);
+  background: white;
+}
