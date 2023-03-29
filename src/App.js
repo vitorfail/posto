@@ -1,16 +1,35 @@
 import './App.css';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import Logo from "./gilbarco.png";
 import At from "./at.png";
 import Mangeuria from "./mang.png"
+import Erro from "./error.png"
 
 function App() {
   const [valor, setvalor] = useState("0,00")
   const [volume, setvolume] = useState("0,00")
-  const [ direita, setdireita] = useState(0)
+  const [direita, setdireita] = useState(0)
   const [modal_moeda, setmodal_moeda] = useState(false)
+  const [modal_erro, setmodal_erro] = useState(false)
   const [modal_seta, setmodal_seta] = useState(false)
   const [troca, settroca] = useState(0)
+  const [pergunta_principal, setpergunta_principal] = useState("")
+  const [resposta, setresposta] = useState("")
+  const [tipo, settipo] = useState("")
+  const problemas = [
+    {q:"Colocar R$ 10.00 de gasolina aditivada", r:"10,00", tipo:1}, 
+    {q:"R$ 15.00 de gasolina comum", r:"15,00", tipo:1},
+    {q:"Colocar R$ 121.75 de gasolina comum", r:"121,75", tipo:1},
+    {q:"Colocar R$ 15.00 de gasolina aditivada", r:"15,00", tipo:1},
+    {q:"Botar R$ 84.20 de gasolina comum no tanque", r:"84,20", tipo:1},
+    {q:"Abastecer 2 litros de gasolina aditivada", r:"2", tipo:2},
+    {q:"Colocar 4 litros de gasolina aditivada", r:"4", tipo:2},
+    {q:"Botar 24 litros de gasolina comum", r:"24", tipo:2},
+    {q:"Bote R$ 130.20 de gasolina comum", r:"130,20", tipo:1},
+    {q:"7 litros de gasolina comum", r:"7", tipo:2},
+    {q:"14 litros de gasolina aditivada", r:"14", tipo:2},
+    {q:"Abastecer R$ 13.00 de gasolina comum", r:"13,00", tipo:1},
+  ]
   function adicionar(tecla){
     if(direita !==0){
       if(troca !== 0){
@@ -75,14 +94,24 @@ function App() {
       return e
     }
   }
-
   function abastecer(){
-    var abastecimento = parseFloat((valor.replace(".", "")).replace(',', "."))
-    var intervalo = abastecimento/15
-    setvalor("0,00")
-    setvalor(volume)
-    alert('Abastecido')
+    if(valor === resposta && tipo === troca){
+      var abastecimento = parseFloat((valor.replace(".", "")).replace(',', "."))
+      var intervalo = abastecimento/15
+      setvalor("0,00")
+      setvalor(volume)
+      alert('Abastecido')  
+    }
+    else{
+      setmodal_erro(true)
+    }
   }
+  useEffect(()=>{
+    var pergunta_inicial = problemas[Math.floor(Math.random() * (problemas.length - 1 + 1)) + 1] 
+    setpergunta_principal(pergunta_inicial.q)
+    setresposta(pergunta_inicial.r)
+    settipo(pergunta_inicial.tipo)
+  }, [])
   return (
     <div className="App">
         <div className='abastecer' onClick={() => abastecer()}>
@@ -101,6 +130,16 @@ function App() {
             <p>Escolha qual lado da bomba será usado ◀ ▶</p>
             <button onClick={() => setmodal_seta(false)}>OK</button>
           </div>
+        </div>
+        <div className={modal_erro?'modal-erro show':'modal-erro'}>
+          <div className='alerta'>
+            <img src={Erro} alt='atencao'/>
+            <p>Ops! Você deve ter errado alguma coisa</p>
+            <button onClick={() => setmodal_erro(false)}>OK</button>
+          </div>
+        </div>
+        <div className='pergunta'>
+          <p>{pergunta_principal}</p>
         </div>
         <div className='tela'>
             <label>{valor}</label>

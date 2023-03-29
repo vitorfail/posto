@@ -71,7 +71,7 @@
   cursor: pointer;
   background: #abacb0;
 }
-.modal-moeda, .modal-seta{
+.modal-moeda, .modal-seta, .modal-erro{
   position: absolute;
   z-index: 9;
   width: 100%;
@@ -82,10 +82,10 @@
   justify-content: center;
   align-content: center;
 }
-.modal-moeda.show, .modal-seta.show{
+.modal-moeda.show, .modal-seta.show, .modal-erro.show{
   display: flex;
 }
-.modal-moeda .alerta, .modal-seta .alerta{
+.modal-moeda .alerta, .modal-seta .alerta, .modal-erro .alerta{
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -96,10 +96,10 @@
   box-shadow: 0px 0px 17px rgba(0, 0, 0, 0.438);
   border-radius: 20px;
 }
-.modal-moeda .alerta img, .modal-seta .alerta img{
+.modal-moeda .alerta img, .modal-seta .alerta img, .modal-erro .alerta img{
   width: 190px;
 }
-.modal-moeda .alerta p, .modal-seta .alerta p{
+.modal-moeda .alerta p, .modal-seta .alerta p, .modal-erro .alerta p{
   margin: 20px;
   text-align: justify;
 }
@@ -113,12 +113,29 @@
   height: 55px;
   border-radius: 9px;
   background: rgb(161, 161, 19);
+} 
+.modal-erro button{
+  font-size: 20px;
+  margin: 10px;
+  color: white;
+  border: none;
+  outline: none;
+  width: 60px;
+  height: 55px;
+  border-radius: 9px;
+  background: rgb(161, 19, 19);  
 }
 .modal-moeda button:hover, .modal-seta button:hover{
   cursor: pointer;
   border: 2px solid rgb(161, 161, 19);
   color: rgb(161, 161, 19);
   background: white;
+}
+.modal-erro button:hover{
+  cursor: pointer;
+  border: 2px solid rgb(161, 19, 19);
+  color: rgb(161, 19, 19);
+  background: white;  
 }
 .abastecer{
   position: absolute;
@@ -140,4 +157,15 @@
   border-radius: 50%;
   border: 1px solid rgb(10, 119, 10);
   background: white;
+}
+.pergunta{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  height: 70px;
+  background: black;
+  color: white;
+  position: absolute;
+  top: 0;
 }
