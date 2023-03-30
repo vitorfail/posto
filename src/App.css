@@ -72,20 +72,24 @@
   background: #abacb0;
 }
 .modal-moeda, .modal-seta, .modal-erro{
+  transition: all 5s ease-in-out;
   position: absolute;
   z-index: 9;
   width: 100%;
   height: 100%;
-  background: rgba(0, 0, 0, 0.24);
+  background: rgba(0, 0, 0, 0.596);
   display: none;
   align-items: center;
   justify-content: center;
   align-content: center;
 }
 .modal-moeda.show, .modal-seta.show, .modal-erro.show{
+  transition: all 5s ease-in-out;
   display: flex;
 }
 .modal-moeda .alerta, .modal-seta .alerta, .modal-erro .alerta{
+  transition: all 0.2s ease-in-out;
+  animation: popup 0.7s;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -104,6 +108,7 @@
   text-align: justify;
 }
 .modal-moeda button, .modal-seta button{
+  transition: all 0.2s ease-in-out;
   font-size: 20px;
   margin: 10px;
   color: white;
@@ -115,6 +120,7 @@
   background: rgb(161, 161, 19);
 } 
 .modal-erro button{
+  transition: all 0.2s ease-in-out;
   font-size: 20px;
   margin: 10px;
   color: white;
@@ -168,4 +174,27 @@
   color: white;
   position: absolute;
   top: 0;
+}
+@keyframes popup {
+  0%{
+    transform: scale(1);
+  }
+  50%{
+    transform: scale(1.4);
+  }
+  60%{
+    transform: scale(1.1);
+  }
+  70%{
+    transform: scale(1.2);
+  }
+  80%{
+    transform: scale(1);
+  }
+  90%{
+    transform: scale(1.1);
+  }
+  100%{
+    transform: scale(1);
+  }
 }
