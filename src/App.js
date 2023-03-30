@@ -9,6 +9,7 @@ function App() {
   const [valor, setvalor] = useState("0,00")
   const [volume, setvolume] = useState("0,00")
   const [direita, setdireita] = useState(0)
+  const [bomba, setbomba] = useState(false)
   const [modal_moeda, setmodal_moeda] = useState(false)
   const [modal_erro, setmodal_erro] = useState(false)
   const [modal_seta, setmodal_seta] = useState(false)
@@ -96,6 +97,7 @@ function App() {
   }
   function abastecer(){
     if(valor === resposta && tipo === troca){
+      setbomba(true)
       var abastecimento = parseFloat((valor.replace(".", "")).replace(',', "."))
       var intervalo = abastecimento/15
       setvalor("0,00")
@@ -118,7 +120,7 @@ function App() {
   }
   return (
     <div className="App">
-        <div className='abastecer' onClick={() => abastecer()}>
+        <div className={bomba?'abastecer show':'abastecer'} onClick={() => abastecer()}>
           <img src={Mangeuria} alt='abastecer'/>
         </div>
         <div className={modal_moeda?'modal-moeda show':'modal-moeda'}>
@@ -145,10 +147,10 @@ function App() {
         <div className='pergunta'>
           <p>{pergunta_principal}</p>
         </div>
-        <div className='tela'>
+        <div className={bomba?'tela show':'tela'}>
             <label>{valor}</label>
         </div>
-        <div className='tela'>
+        <div className={bomba?'tela show':'tela'}>
             <label>{volume}</label>
         </div>
         <div className='quadro'>

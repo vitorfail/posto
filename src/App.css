@@ -31,6 +31,9 @@
   box-shadow: inset 0 0 20px gray;
   background: #a49b95;
 }
+.tela.show{
+  z-index: 100;
+}
 .teclado{
   align-content: flex-start;
   justify-content: center;
@@ -155,6 +158,9 @@
   align-items: center;
   justify-content: center;
 }
+.abastecer.show{
+  animation: crescer 2s;
+}
 .abastecer img{
   width: 90px;
 }
@@ -196,5 +202,16 @@
   }
   100%{
     transform: scale(1);
+  }
+}
+@keyframes crescer {
+  0%{
+    width: inherit;
+    height: inherit;
+  }
+  100%{
+    transition: all 0.2s ease-in-out;
+    width: 100%;
+    height: 100%;
   }
 }
