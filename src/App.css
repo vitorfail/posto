@@ -207,11 +207,10 @@
 }
 @keyframes crescer {
   to{
-    width: inherit;
-    height: inherit;
+    scale: 1;
   }
   from{
-    width: 100%;
-    height: 100%;
+    scale: 10;
+    border-radius: 0;
   }
 }
