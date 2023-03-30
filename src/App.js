@@ -100,18 +100,22 @@ function App() {
       var intervalo = abastecimento/15
       setvalor("0,00")
       setvalor(volume)
-      alert('Abastecido')  
+      alert('Abastecido')
+      gerar_pergunta()  
     }
     else{
       setmodal_erro(true)
     }
   }
   useEffect(()=>{
+    gerar_pergunta()
+  }, [])
+  function gerar_pergunta(){
     var pergunta_inicial = problemas[Math.floor(Math.random() * (problemas.length - 1 + 1)) + 1] 
     setpergunta_principal(pergunta_inicial.q)
     setresposta(pergunta_inicial.r)
     settipo(pergunta_inicial.tipo)
-  }, [])
+  }
   return (
     <div className="App">
         <div className='abastecer' onClick={() => abastecer()}>
