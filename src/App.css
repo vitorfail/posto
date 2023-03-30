@@ -147,6 +147,7 @@
   background: white;  
 }
 .abastecer{
+  transition: all 0.2s ease-in-out;
   position: absolute;
   bottom: 0;
   left: 0;
@@ -205,12 +206,11 @@
   }
 }
 @keyframes crescer {
-  0%{
+  to{
     width: inherit;
     height: inherit;
   }
-  100%{
-    transition: all 0.2s ease-in-out;
+  from{
     width: 100%;
     height: 100%;
   }
