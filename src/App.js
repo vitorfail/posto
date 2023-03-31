@@ -102,8 +102,9 @@ function App() {
       var intervalo = abastecimento/15
       setvalor("0,00")
       setvalor(volume)
-      alert('Abastecido')
-      gerar_pergunta()  
+      setTimeout(() => {
+        gerar_pergunta()
+      }, 2000);  
     }
     else{
       setmodal_erro(true)

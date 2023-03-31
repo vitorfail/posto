@@ -160,7 +160,8 @@
   justify-content: center;
 }
 .abastecer.show{
-  animation: crescer 2s;
+  z-index:99;
+  animation: crescer 4s;
 }
 .abastecer img{
   width: 90px;
@@ -206,11 +207,17 @@
   }
 }
 @keyframes crescer {
-  to{
+  0%{
     scale: 1;
   }
-  from{
-    scale: 10;
+  50%{
+    width:100%;
+    height:100%;
+    border-radius: 0;
+  }
+  100%{
+    width:100%;
+    height:100%;
     border-radius: 0;
   }
 }
