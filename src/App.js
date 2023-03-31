@@ -4,8 +4,10 @@ import Logo from "./gilbarco.png";
 import At from "./at.png";
 import Mangeuria from "./mang.png"
 import Erro from "./error.png"
+import { useRef } from 'react';
 
 function App() {
+  const inputRef = useRef();
   const [valor, setvalor] = useState("0,00")
   const [volume, setvolume] = useState("0,00")
   const [direita, setdireita] = useState(0)
@@ -96,12 +98,8 @@ function App() {
     }
   }
   function abastecer(){
-    console.log(valor)
-    console.log(volume)
-    console.log(resposta)
-    console.log(tipo)
-    console.log(troca)
     if(valor === resposta && tipo === troca || volume === resposta && tipo === troca){
+      inputRef.current.focus()
       setbomba(true)
       var abastecimento = parseFloat((valor.replace(".", "")).replace(',', "."))
       var intervalo = abastecimento/15
@@ -161,7 +159,7 @@ function App() {
             <label>{volume}</label>
         </div>
         <div className='quadro'>
-          <img src={Logo} alt="logo"/>
+          <img src={Logo} ref={inputRef} alt="logo"/>
           <div className='teclado'>
             <div onClick={(event) => adicionar(event.target.innerText)} className='tecla'>1</div>
             <div onClick={(event) => adicionar(event.target.innerText)} className='tecla'>2</div>
