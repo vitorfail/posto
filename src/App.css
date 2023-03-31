@@ -18,10 +18,30 @@
   width: 100%;
   height: 100%;
 }
+.gasolina{
+  box-shadow: 1px 1px 10px rgba(0, 0, 0, 0.9);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 23px;
+  color: white;
+  position: absolute;
+  height: 53%;
+  width: 12%;
+  top: 120px;
+}
+.gasolina.c{
+  right: 0;
+  background: red;
+}
+.gasolina.a{
+  left: 0;
+  background: rgb(25, 0, 255);
+}
 .tela{
   border: solid 2px black;
   display: flex;
-  justify-content: flex-end;
+  justify-content: space-between;
   align-content: center;
   align-items: center;
   height: 50px;
@@ -147,6 +167,7 @@
   background: white;  
 }
 .abastecer{
+  box-shadow: 1px 1px 10px rgba(0, 0, 0, 0.9);
   transition: all 0.2s ease-in-out;
   position: absolute;
   bottom: 0;
@@ -160,11 +181,18 @@
   justify-content: center;
 }
 .abastecer.show{
+  background: rgb(10, 119, 10);
   z-index:99;
   animation: crescer 5s;
 }
 .abastecer img{
   width: 90px;
+}
+.abastecer.show img:hover{
+  cursor: pointer;
+  border-radius: 50%;
+  border: 1px solid rgb(10, 119, 10);
+  background: rgb(10, 119, 10);
 }
 .abastecer img:hover{
   cursor: pointer;
@@ -182,6 +210,11 @@
   color: white;
   position: absolute;
   top: 0;
+  box-shadow: 0px 10px 10px rgba(0, 0, 0, 0.39);
+}
+.pergunta img{
+  width: 30px;
+  margin: 5px;
 }
 .abastecido{
   z-index: 110;
@@ -237,5 +270,12 @@
     width:100%;
     height:100%;
     border-radius: 0;
+  }
+}
+@media screen and (max-width:900px){
+  .gasolina{
+    height: 53%;
+    width: 12%;
+    top: 220px;  
   }
 }

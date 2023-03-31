@@ -4,6 +4,7 @@ import Logo from "./gilbarco.png";
 import At from "./at.png";
 import Mangeuria from "./mang.png"
 import Erro from "./error.png"
+import Pessoa from './pessoa.png'
 import { useRef } from 'react';
 
 function App() {
@@ -105,17 +106,25 @@ function App() {
   }
   function abastecer(){
     inputRef.current.focus()
-    if(valor === resposta && tipo === troca || volume === resposta && tipo === troca){
+    if((valor === resposta && tipo === troca) || (volume === resposta && tipo === troca)){
       setbomba(true)
-      var abastecimento = parseFloat((valor.replace(".", "")).replace(',', "."))
-      var intervalo = abastecimento/15
-      setvalor("0,00")
-      setvolume('0,00')
+      //var abastecimento = parseFloat((valor.replace(".", "")).replace(',', "."))
+      //var intervalo = abastecimento/15
+      if(troca === 1){
+        setvolume((parseFloat(valor)/5.77).toFixed(2))        
+        setvalor("0,00")
+      }
+      if(troca === 1){
+        setvalor((parseFloat(volume)*5.77).toFixed(2))        
+        setvolume("0,00")
+      }
       setTimeout(() => {
-        if(gerar_pergunta() == false){
+        if(gerar_pergunta() === false){
           gerar_pergunta()
         }    
         setbomba(false)
+        setvalor("0,00")        
+        setvolume("0,00")
       }, 2000);
     }
     else{
@@ -123,13 +132,13 @@ function App() {
     }
   }
   useEffect(()=>{
-    if(gerar_pergunta() == false){
+    if(gerar_pergunta() === false){
       gerar_pergunta()
     }
   }, [])
   function gerar_pergunta(){
-    var pergunta_inicial = problemas[Math.floor(Math.random() * (problemas.length - 1 + 1)) + 1] 
-    if(pergunta_inicial.q !== undefined){
+    var pergunta_inicial = problemas[Math.floor(Math.random() * (problemas.length - 1 + 1)) + 1]
+    if(pergunta_inicial !== undefined){
       setpergunta_principal(pergunta_inicial.q)
       setresposta(pergunta_inicial.r)
       settipo(pergunta_inicial.tipo)
@@ -144,7 +153,7 @@ function App() {
         <div ref={inputRef} className={bomba?'abastecer show':'abastecer'} onClick={() => abastecer()}>
           <img   src={Mangeuria} alt='abastecer'/>
         </div>
-        <p className={bomba?'abastecido show':'abastecido'}>Abastecido!</p>
+        <p ref={inputRef} className={bomba?'abastecido show':'abastecido'}>Abastecido!</p>
         <div className={modal_moeda?'modal-moeda show':'modal-moeda'}>
           <div className='alerta'>
             <img src={At} alt='atencao'/>
@@ -166,13 +175,18 @@ function App() {
             <button onClick={() => setmodal_erro(false)}>OK</button>
           </div>
         </div>
+        <div className='gasolina c'>GC</div>
+        <div className='gasolina a'>GA</div>
         <div className='pergunta'>
+          <img src={Pessoa} ></img>
           <p>{pergunta_principal}</p>
         </div>
         <div className={bomba?'tela show':'tela'}>
+            <h3>R$</h3>
             <label>{valor}</label>
         </div>
         <div className={bomba?'tela show':'tela'}>
+            <h3>L</h3>
             <label>{volume}</label>
         </div>
         <div className='quadro'>
