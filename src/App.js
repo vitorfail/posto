@@ -7,7 +7,7 @@ import Erro from "./error.png"
 import { useRef } from 'react';
 
 function App() {
-  const inputRef = useRef();
+  const inputRef = useRef()
   const [valor, setvalor] = useState("0,00")
   const [volume, setvolume] = useState("0,00")
   const [direita, setdireita] = useState(0)
@@ -34,43 +34,49 @@ function App() {
     {q:"Abastecer R$ 13.00 de gasolina comum", r:"13,00", tipo:1},
   ]
   function adicionar(tecla){
-    if(direita !==0){
-      if(troca !== 0){
-        if(troca === 1){
-          tecla = String(tecla)
-          if(valor === "0,00"){
-            setvalor("")
-          }
-          if(tecla !== "Gum" || tecla !== "Gdois" || tecla !== "Pum" || tecla !== "Pdois" || tecla !== "$" || tecla !== "C" || tecla !== "E"){
-            setvalor( mascara_valor(valor + (tecla)))
+    if(tecla === 'C'){
+      setvolume('0,00')
+      setvalor('0,00')
+    }
+    else{
+      if(direita !==0){
+        if(troca !== 0){
+          if(troca === 1){
+            tecla = String(tecla)
+            if(valor === "0,00"){
+              setvalor("")
+            }
+            if(tecla !== "Gum" || tecla !== "Gdois" || tecla !== "Pum" || tecla !== "Pdois" || tecla !== "$" || tecla !== "C" || tecla !== "E"){
+              setvalor( mascara_valor(valor + (tecla)))
+            }
+            else{
+              if(tecla === "Pum"){
+                  setvalor("5,00")
+              }
+            }  
           }
           else{
-            if(tecla === "Pum"){
-                setvalor("5,00")
+            tecla = String(tecla)
+            if(volume === "0,00"){
+              setvolume("")
             }
-          }  
+            if(tecla !== "Gum" || tecla !== "Gdois" || tecla !== "Pum" || tecla !== "Pdois" || tecla !== "$" || tecla !== "C" || tecla !== "E"){
+              setvolume( mascara_valor(volume + (tecla)))
+            }
+            else{
+              if(tecla === "Pum"){
+                  setvolume("5,00")
+              }
+            }  
+          }
         }
         else{
-          tecla = String(tecla)
-          if(volume === "0,00"){
-            setvolume("")
-          }
-          if(tecla !== "Gum" || tecla !== "Gdois" || tecla !== "Pum" || tecla !== "Pdois" || tecla !== "$" || tecla !== "C" || tecla !== "E"){
-            setvolume( mascara_valor(volume + (tecla)))
-          }
-          else{
-            if(tecla === "Pum"){
-                setvolume("5,00")
-            }
-          }  
+          setmodal_moeda(true)
         }
       }
       else{
-        setmodal_moeda(true)
+        setmodal_seta(true)
       }
-    }
-    else{
-      setmodal_seta(true)
     }
   }
   function escolher_combustivel(val){
@@ -98,36 +104,47 @@ function App() {
     }
   }
   function abastecer(){
+    inputRef.current.focus()
     if(valor === resposta && tipo === troca || volume === resposta && tipo === troca){
-      //inputRef.current.focus()
       setbomba(true)
       var abastecimento = parseFloat((valor.replace(".", "")).replace(',', "."))
       var intervalo = abastecimento/15
       setvalor("0,00")
       setvolume('0,00')
       setTimeout(() => {
-        gerar_pergunta()
+        if(gerar_pergunta() == false){
+          gerar_pergunta()
+        }    
+        setbomba(false)
       }, 2000);
-      setbomba(false)
     }
     else{
       setmodal_erro(true)
     }
   }
   useEffect(()=>{
-    gerar_pergunta()
+    if(gerar_pergunta() == false){
+      gerar_pergunta()
+    }
   }, [])
   function gerar_pergunta(){
     var pergunta_inicial = problemas[Math.floor(Math.random() * (problemas.length - 1 + 1)) + 1] 
-    setpergunta_principal(pergunta_inicial.q)
-    setresposta(pergunta_inicial.r)
-    settipo(pergunta_inicial.tipo)
+    if(pergunta_inicial.q !== undefined){
+      setpergunta_principal(pergunta_inicial.q)
+      setresposta(pergunta_inicial.r)
+      settipo(pergunta_inicial.tipo)
+      return true
+    }
+    else{
+      return false
+    }
   }
   return (
     <div className="App">
-        <div className={bomba?'abastecer show':'abastecer'} onClick={() => abastecer()}>
-          <img src={Mangeuria} alt='abastecer'/>
+        <div ref={inputRef} className={bomba?'abastecer show':'abastecer'} onClick={() => abastecer()}>
+          <img   src={Mangeuria} alt='abastecer'/>
         </div>
+        <p className={bomba?'abastecido show':'abastecido'}>Abastecido!</p>
         <div className={modal_moeda?'modal-moeda show':'modal-moeda'}>
           <div className='alerta'>
             <img src={At} alt='atencao'/>
@@ -159,7 +176,7 @@ function App() {
             <label>{volume}</label>
         </div>
         <div className='quadro'>
-          <img src={Logo} ref={inputRef} alt="logo"/>
+          <img src={Logo} alt="logo"/>
           <div className='teclado'>
             <div onClick={(event) => adicionar(event.target.innerText)} className='tecla'>1</div>
             <div onClick={(event) => adicionar(event.target.innerText)} className='tecla'>2</div>

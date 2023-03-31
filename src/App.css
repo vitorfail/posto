@@ -161,7 +161,7 @@
 }
 .abastecer.show{
   z-index:99;
-  animation: crescer 4s;
+  animation: crescer 5s;
 }
 .abastecer img{
   width: 90px;
@@ -182,6 +182,19 @@
   color: white;
   position: absolute;
   top: 0;
+}
+.abastecido{
+  z-index: 110;
+  transition: all 4s ease;
+  display: none;
+  font-size: 23px;
+  top:420px;
+  position: absolute;
+  color: white;
+}
+.abastecido.show{
+  transition: all 4s ease;
+  display: flex;
 }
 @keyframes popup {
   0%{
@@ -209,6 +222,11 @@
 @keyframes crescer {
   0%{
     scale: 1;
+  }
+  30%{
+    width:100%;
+    height:100%;
+    border-radius: 0;
   }
   50%{
     width:100%;
