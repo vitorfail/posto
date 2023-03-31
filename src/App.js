@@ -23,12 +23,12 @@ function App() {
     {q:"Colocar R$ 121.75 de gasolina comum", r:"121,75", tipo:1},
     {q:"Colocar R$ 15.00 de gasolina aditivada", r:"15,00", tipo:1},
     {q:"Botar R$ 84.20 de gasolina comum no tanque", r:"84,20", tipo:1},
-    {q:"Abastecer 2 litros de gasolina aditivada", r:"2", tipo:2},
-    {q:"Colocar 4 litros de gasolina aditivada", r:"4", tipo:2},
-    {q:"Botar 24 litros de gasolina comum", r:"24", tipo:2},
+    {q:"Abastecer 2 litros de gasolina aditivada", r:"2,00", tipo:2},
+    {q:"Colocar 4 litros de gasolina aditivada", r:"4,00", tipo:2},
+    {q:"Botar 24 litros de gasolina comum", r:"24,00", tipo:2},
     {q:"Bote R$ 130.20 de gasolina comum", r:"130,20", tipo:1},
-    {q:"7 litros de gasolina comum", r:"7", tipo:2},
-    {q:"14 litros de gasolina aditivada", r:"14", tipo:2},
+    {q:"7 litros de gasolina comum", r:"7,00", tipo:2},
+    {q:"14 litros de gasolina aditivada", r:"14,00", tipo:2},
     {q:"Abastecer R$ 13.00 de gasolina comum", r:"13,00", tipo:1},
   ]
   function adicionar(tecla){
@@ -81,7 +81,7 @@ function App() {
     settroca(1)
   }
   function vol(){
-    setvalor("0,00")
+    setvolume("0,00")
     settroca(2)
   }
   function mascara_valor(e){
@@ -96,15 +96,21 @@ function App() {
     }
   }
   function abastecer(){
-    if(valor === resposta && tipo === troca){
+    console.log(valor)
+    console.log(volume)
+    console.log(resposta)
+    console.log(tipo)
+    console.log(troca)
+    if(valor === resposta && tipo === troca || volume === resposta && tipo === troca){
       setbomba(true)
       var abastecimento = parseFloat((valor.replace(".", "")).replace(',', "."))
       var intervalo = abastecimento/15
       setvalor("0,00")
-      setvalor(volume)
+      setvolume('0,00')
       setTimeout(() => {
         gerar_pergunta()
-      }, 2000);  
+      }, 2000);
+      setbomba(false)
     }
     else{
       setmodal_erro(true)
