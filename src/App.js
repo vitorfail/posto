@@ -99,7 +99,7 @@ function App() {
   }
   function abastecer(){
     if(valor === resposta && tipo === troca || volume === resposta && tipo === troca){
-      inputRef.current.focus()
+      //inputRef.current.focus()
       setbomba(true)
       var abastecimento = parseFloat((valor.replace(".", "")).replace(',', "."))
       var intervalo = abastecimento/15
